@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ecf6ff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+.qr-code {
+    width: 250px;
+    height: auto;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 1.1em;
+    color: #555;
+}

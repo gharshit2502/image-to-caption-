@@ -3,7 +3,7 @@ import google.generativeai as genai
 import os
 
 # === CONFIG ===
-API_KEY = "AIzaSyCzkY-nwby9qIUpvZO6z5Rd9_n-tvQSfAw"  
+API_KEY = "api key"  
 # === FLASK APP ===
 app = Flask(__name__)
 genai.configure(api_key=API_KEY)
@@ -29,7 +29,7 @@ def analyze_image():
 
         # Call Gemini
         model = genai.GenerativeModel("gemini-1.5-flash")
-        response = model.generate_content([image_part, "Describe this image as a short caption."])
+        response = model.generate_content([image_part, "Describe this image as a short caption for the posting it on social media   ."])
 
         caption = response.text.strip()
         return jsonify({"caption": caption})
