@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Caption Generator</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+  <h2>Upload an Image to Get a Caption</h2>
+  <input type="file" id="fileInput" accept="image/*">
+  <p><strong>Caption:</strong> <span id="caption"></span></p>
+
+  <script>
+    document.getElementById('fileInput').addEventListener('change', async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64String = reader.result.split(',')[1];
+
+        const response = await fetch('/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ image: base64String })
+        });
+
+        const result = await response.json();
+        document.getElementById('caption').textContent = result.caption || result.error || 'No caption found';
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
